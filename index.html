@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ElderCare Companion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HOME PAGE
+  ============================================================ -->
+  <section id="page-home" class="page active">
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <span class="brand-icon">🏥</span>
+        <span class="brand-name">ElderCare Companion</span>
+      </div>
+      <div class="top-bar-right">
+        <button id="theme-toggle" class="icon-btn" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="home-content">
+      <div class="section-header">
+        <h2>Patients</h2>
+        <button id="btn-add-patient" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Patient
+        </button>
+      </div>
+
+      <div id="patient-grid" class="patient-grid"></div>
+
+      <div id="empty-patients" class="empty-state">
+        <div class="empty-icon">👴</div>
+        <p class="empty-title">No Patients Yet</p>
+        <p class="empty-sub">Click "Add Patient" to create your first patient profile.</p>
+      </div>
+    </main>
+  </section>
+
+  <!-- ============================================================
+       DASHBOARD PAGE
+  ============================================================ -->
+  <section id="page-dashboard" class="page">
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <button id="btn-back" class="btn btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
+        <div id="patient-header" class="patient-header-info"></div>
+      </div>
+      <div class="top-bar-right">
+        <button id="theme-toggle-dash" class="icon-btn" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="calendar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Calendar
+      </button>
+      <button class="tab-btn" data-tab="contacts">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5 19.79 19.79 0 0 1 1.61 2.82 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16"/></svg>
+        Emergency Contacts
+      </button>
+      <button class="tab-btn" data-tab="notes">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Notes
+      </button>
+    </nav>
+
+    <div class="tab-content">
+
+      <!-- CALENDAR TAB -->
+      <div id="tab-calendar" class="tab-pane active">
+        <div class="calendar-container">
+          <div class="calendar-nav">
+            <button id="cal-prev" class="icon-btn" title="Previous month">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <h3 id="cal-month-label">January 2026</h3>
+            <button id="cal-next" class="icon-btn" title="Next month">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div class="calendar-weekdays">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+          <div id="calendar-grid" class="calendar-grid"></div>
+        </div>
+        <div class="calendar-legend">
+          <span class="legend-item"><span class="legend-dot dot-medication"></span> Medication</span>
+          <span class="legend-item"><span class="legend-dot dot-appointment"></span> Appointment</span>
+          <span class="legend-item"><span class="legend-dot dot-task"></span> Task</span>
+          <span class="legend-item"><span class="legend-dot dot-checkin"></span> Checked In</span>
+        </div>
+      </div>
+
+      <!-- EMERGENCY CONTACTS TAB -->
+      <div id="tab-contacts" class="tab-pane">
+        <div class="tab-section-header">
+          <h3>Emergency Contacts</h3>
+          <button id="btn-add-contact" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Contact
+          </button>
+        </div>
+        <div id="contacts-list" class="contacts-list"></div>
+        <div id="empty-contacts" class="empty-state">
+          <div class="empty-icon">📞</div>
+          <p class="empty-title">No Emergency Contacts</p>
+          <p class="empty-sub">Add emergency contacts for quick access when needed.</p>
+        </div>
+      </div>
+
+      <!-- NOTES TAB -->
+      <div id="tab-notes" class="tab-pane">
+        <div class="tab-section-header">
+          <h3>Care Notes</h3>
+          <button id="btn-add-note" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Note
+          </button>
+        </div>
+        <div id="notes-list" class="notes-list"></div>
+        <div id="empty-notes" class="empty-state">
+          <div class="empty-icon">📝</div>
+          <p class="empty-title">No Notes Yet</p>
+          <p class="empty-sub">Add notes to track patient observations and check-ins.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MODAL: ADD PATIENT
+  ============================================================ -->
+  <div id="modal-add-patient" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="modal-patient-title">
+      <div class="modal-header">
+        <h3 id="modal-patient-title">Add New Patient</h3>
+        <button class="icon-btn" data-close="modal-add-patient" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="avatar-upload-section">
+          <div id="avatar-preview" class="avatar-preview" title="Click to upload photo">
+            <span id="avatar-initials" class="avatar-initials">?</span>
+            <img id="avatar-img" class="avatar-img" src="" alt="" />
+          </div>
+          <label for="patient-photo-input" class="btn btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Upload Photo
+          </label>
+          <input type="file" id="patient-photo-input" accept="image/*" class="visually-hidden" />
+        </div>
+        <div class="form-group">
+          <label for="input-patient-name">Full Name <span class="required">*</span></label>
+          <input type="text" id="input-patient-name" placeholder="e.g. John Smith" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="input-patient-age">Age <span class="required">*</span></label>
+            <input type="number" id="input-patient-age" min="1" max="120" placeholder="e.g. 78" />
+          </div>
+          <div class="form-group">
+            <label for="input-patient-room">Room # <span class="required">*</span></label>
+            <input type="text" id="input-patient-room" placeholder="e.g. 204A" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" data-close="modal-add-patient">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-patient">Save Patient</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: DAY DETAIL (Calendar popup)
+  ============================================================ -->
+  <div id="modal-day-detail" class="modal-overlay" aria-hidden="true">
+    <div class="modal modal-wide" role="dialog" aria-labelledby="day-detail-title">
+      <div class="modal-header">
+        <h3 id="day-detail-title">Select a Day</h3>
+        <button class="icon-btn" data-close="modal-day-detail" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Daily check-in toggle -->
+        <div class="checkin-row">
+          <div class="checkin-label">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Daily Check-in Complete
+          </div>
+          <label class="toggle-switch" aria-label="Toggle daily check-in">
+            <input type="checkbox" id="checkin-checkbox" />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Existing reminders for this day -->
+        <div class="reminders-section">
+          <h4>Reminders for This Day</h4>
+          <div id="day-reminders-list" class="day-reminders-list"></div>
+          <div id="no-day-reminders" class="no-reminders-msg">No reminders for this day yet.</div>
+        </div>
+
+        <!-- Add new reminder form -->
+        <div class="add-reminder-section">
+          <h4>Add New Reminder</h4>
+          <div class="reminder-type-tabs">
+            <button class="type-tab active" data-type="medication">💊 Medication</button>
+            <button class="type-tab" data-type="appointment">🩺 Appointment</button>
+            <button class="type-tab" data-type="task">✅ Task</button>
+          </div>
+          <div class="form-group">
+            <label for="input-reminder-title">Title <span class="required">*</span></label>
+            <input type="text" id="input-reminder-title" placeholder="e.g. Blood pressure medication" autocomplete="off" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-reminder-time">Time</label>
+              <input type="time" id="input-reminder-time" />
+            </div>
+            <div class="form-group" style="flex:2">
+              <label for="input-reminder-notes">Notes</label>
+              <input type="text" id="input-reminder-notes" placeholder="Optional details" autocomplete="off" />
+            </div>
+          </div>
+          <button class="btn btn-primary" id="btn-add-reminder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Reminder
+          </button>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close="modal-day-detail">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: ADD EMERGENCY CONTACT
+  ============================================================ -->
+  <div id="modal-add-contact" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="modal-contact-title">
+      <div class="modal-header">
+        <h3 id="modal-contact-title">Add Emergency Contact</h3>
+        <button class="icon-btn" data-close="modal-add-contact" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="input-contact-name">Full Name <span class="required">*</span></label>
+          <input type="text" id="input-contact-name" placeholder="e.g. Jane Smith" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="input-contact-relationship">Relationship <span class="required">*</span></label>
+          <input type="text" id="input-contact-relationship" placeholder="e.g. Daughter" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="input-contact-phone">Phone Number <span class="required">*</span></label>
+          <input type="tel" id="input-contact-phone" placeholder="e.g. (555) 123-4567" />
+        </div>
+        <div class="form-group">
+          <label for="input-contact-email">Email Address</label>
+          <input type="email" id="input-contact-email" placeholder="e.g. jane@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="input-contact-address">Home Address</label>
+          <input type="text" id="input-contact-address" placeholder="e.g. 123 Main St, City, State" autocomplete="off" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" data-close="modal-add-contact">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-contact">Save Contact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: ADD NOTE
+  ============================================================ -->
+  <div id="modal-add-note" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="modal-note-title">
+      <div class="modal-header">
+        <h3 id="modal-note-title">Add Care Note</h3>
+        <button class="icon-btn" data-close="modal-add-note" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="input-note-date">Check-in Date <span class="required">*</span></label>
+          <input type="date" id="input-note-date" />
+        </div>
+        <div class="form-group">
+          <label for="input-note-title">Note Title <span class="required">*</span></label>
+          <input type="text" id="input-note-title" placeholder="e.g. Morning visit" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="input-note-content">Observations / Notes <span class="required">*</span></label>
+          <textarea id="input-note-content" rows="5" placeholder="Describe your observations about the patient..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" data-close="modal-add-note">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-note">Save Note</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL: CONFIRM DELETE
+  ============================================================ -->
+  <div id="modal-confirm-delete" class="modal-overlay" aria-hidden="true">
+    <div class="modal modal-sm" role="dialog" aria-labelledby="modal-delete-title">
+      <div class="modal-header">
+        <h3 id="modal-delete-title">Confirm Deletion</h3>
+      </div>
+      <div class="modal-body">
+        <p id="delete-confirm-msg" class="confirm-msg">Are you sure you want to delete this? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" data-close="modal-confirm-delete">Cancel</button>
+        <button class="btn btn-danger" id="btn-confirm-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CryptoJS for AES-256 encryption -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
