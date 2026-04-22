@@ -14,7 +14,7 @@
   <section id="page-home" class="page active">
     <header class="top-bar">
       <div class="top-bar-left">
-        <span class="brand-icon">🏥</span>
+        <img class="brand-icon" src="icons/dependability.png" alt="ElderCare Companion logo" />
         <span class="brand-name">ElderCare Companion</span>
       </div>
       <div class="top-bar-right">
@@ -37,7 +37,9 @@
       <div id="patient-grid" class="patient-grid"></div>
 
       <div id="empty-patients" class="empty-state">
-        <div class="empty-icon">👴</div>
+        <div class="empty-icon">
+          <img src="icons/patient.png" alt="No patients yet" />
+        </div>
         <p class="empty-title">No Patients Yet</p>
         <p class="empty-sub">Click "Add Patient" to create your first patient profile.</p>
       </div>
@@ -226,9 +228,18 @@
         <div class="add-reminder-section">
           <h4>Add New Reminder</h4>
           <div class="reminder-type-tabs">
-            <button class="type-tab active" data-type="medication">💊 Medication</button>
-            <button class="type-tab" data-type="appointment">🩺 Appointment</button>
-            <button class="type-tab" data-type="task">✅ Task</button>
+            <button class="type-tab active" data-type="medication">
+              <img class="type-tab-icon" src="icons/medicine.png" alt="Medication" />
+              Medication
+            </button>
+            <button class="type-tab" data-type="appointment">
+              <img class="type-tab-icon" src="icons/stethoscope.png" alt="Appointment" />
+              Appointment
+            </button>
+            <button class="type-tab" data-type="task">
+              <img class="type-tab-icon" src="icons/clipboard.png" alt="Task" />
+              Task
+            </button>
           </div>
           <div class="form-group">
             <label for="input-reminder-title">Title <span class="required">*</span></label>
